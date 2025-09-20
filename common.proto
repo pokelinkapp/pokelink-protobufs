@@ -1,0 +1,6 @@
+syntax = "proto3";
+package Pokelink.Core.Proto;
+
+message GlobalCommon {
+  string version = 1;
+}

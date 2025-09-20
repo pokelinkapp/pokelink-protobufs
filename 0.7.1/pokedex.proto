@@ -1,0 +1,66 @@
+syntax = "proto3";
+package Pokelink.Core.Proto.v0_7_1;
+
+option csharp_namespace = "Pokelink.Core.Proto.v0_7_1";
+
+import "buf/validate/validate.proto";
+
+message EvolutionCondition {
+  option (buf.validate.message).oneof = { fields: ['number', 'string', 'stringArray', 'nested'] };
+  int32 number = 1;
+  string string = 2;
+  repeated string stringArray = 3;
+  map<string, EvolutionCondition> nested = 4;
+}
+
+message Evolution {
+  uint32 to = 1;
+  map<string, EvolutionCondition> conditions = 2;
+  optional uint32 fromForm = 3;
+  optional uint32 toForm = 4;
+}
+
+message Stats {
+  optional uint32 hp = 1 [json_name="hp"];
+  optional uint32 attack = 2 [json_name="atk"];
+  optional uint32 defense = 3 [json_name="def"];
+  optional uint32 specialAttack = 4 [json_name="spAtk"];
+  optional uint32 specialDefense = 5 [json_name="spDef"];
+  optional uint32 speed = 6 [json_name="spd"];
+}
+
+message Sprites {
+  string party = 1;
+  string normal = 2;
+  string shiny = 3;
+  optional string female = 4;
+  optional string femaleShiny = 5;
+}
+
+message Species {
+  optional uint32 id = 1;
+  string name = 2;
+  Sprites sprites = 3;
+  optional uint32 gameId = 4;
+  optional uint32 form = 5;
+  optional string formName = 6;
+  Stats baseStats = 7;
+  optional uint32 baseFriendship = 8;
+  optional Stats evYield = 9;
+  repeated string abilities = 10;
+  optional string color = 11;
+  optional uint32 height = 12;
+  optional uint32 weight = 13;
+  optional uint32 hatchCycles = 14;
+  optional uint32 genderRatio = 15;
+  uint32 catchRate = 16;
+  repeated string types = 17;
+  uint32 growthRate = 18;
+  Evolution evolutions = 19;
+  repeated Species forms = 20;
+}
+
+message Pokedex {
+  string version = 1;
+  repeated Species entries = 2;
+}
