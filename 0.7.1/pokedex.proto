@@ -7,10 +7,13 @@ import "buf/validate/validate.proto";
 
 message EvolutionCondition {
   option (buf.validate.message).oneof = { fields: ['number', 'string', 'stringArray', 'nested'] };
-  int32 number = 1;
-  string string = 2;
-  repeated string stringArray = 3;
-  map<string, EvolutionCondition> nested = 4;
+  optional int32 number = 1;
+  optional float float = 2;
+  optional string string = 3;
+  repeated int32 numberArray = 4;
+  repeated float floatArray = 5;
+  repeated string stringArray = 6;
+  map<string, EvolutionCondition> nested = 7;
 }
 
 message Evolution {
@@ -56,7 +59,7 @@ message Species {
   uint32 catchRate = 16;
   repeated string types = 17;
   uint32 growthRate = 18;
-  Evolution evolutions = 19;
+  repeated Evolution evolutions = 19;
   repeated Species forms = 20;
 }
 
