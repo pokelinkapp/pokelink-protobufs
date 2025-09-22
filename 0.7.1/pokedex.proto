@@ -3,10 +3,9 @@ package Pokelink.Core.Proto.v0_7_1;
 
 option csharp_namespace = "Pokelink.Core.Proto.v0_7_1";
 
-import "buf/validate/validate.proto";
 
+// Only one of these fields will be used. We check in the order shown below
 message EvolutionCondition {
-  option (buf.validate.message).oneof = { fields: ['number', 'string', 'stringArray', 'nested'] };
   optional int32 number = 1;
   optional float float = 2;
   optional string string = 3;
