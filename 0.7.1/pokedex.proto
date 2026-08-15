@@ -61,6 +61,7 @@ message Species {
   repeated Evolution evolutions = 19;
   repeated Species forms = 20;
   optional uint32 maxHeartGauge = 21;
+  optional bool pidCloneRisk = 22;
 }
 
 message Pokedex {
